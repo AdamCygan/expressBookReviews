@@ -10,6 +10,14 @@ async function getBooksWithAxios(apiUrl) {
   return response.data;
 }
 
+async function getBookByISBNWithAxios(apiUrl, isbn) {
+  const baseUrl = apiUrl.replace(/\/$/, '');
+  const response = await axios.get(
+    `${baseUrl}/isbn/${encodeURIComponent(isbn)}`
+  );
+  return response.data;
+}
+
 function userExists(username) {
   const isUsernameInDatabase = users.filter((usr) => usr.username === username);
 
@@ -109,3 +117,4 @@ public_users.get('/review/:isbn', function (req, res) {
 
 module.exports.general = public_users;
 module.exports.getBooksWithAxios = getBooksWithAxios;
+module.exports.getBookByISBNWithAxios = getBookByISBNWithAxios;
