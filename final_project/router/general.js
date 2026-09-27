@@ -1,8 +1,14 @@
 const express = require('express');
+const axios = require('axios');
 let books = require('./booksdb.js');
 let isValid = require('./auth_users.js').isValid;
 let users = require('./auth_users.js').users;
 const public_users = express.Router();
+
+async function getBooksWithAxios(apiUrl) {
+  const response = await axios.get(apiUrl);
+  return response.data;
+}
 
 function userExists(username) {
   const isUsernameInDatabase = users.filter((usr) => usr.username === username);
@@ -102,3 +108,4 @@ public_users.get('/review/:isbn', function (req, res) {
 });
 
 module.exports.general = public_users;
+module.exports.getBooksWithAxios = getBooksWithAxios;
