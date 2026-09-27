@@ -26,6 +26,14 @@ async function getBooksByAuthorWithAxios(apiUrl, author) {
   return response.data;
 }
 
+async function getBooksByTitleWithAxios(apiUrl, title) {
+  const baseUrl = apiUrl.replace(/\/$/, '');
+  const response = await axios.get(
+    `${baseUrl}/title/${encodeURIComponent(title)}`
+  );
+  return response.data;
+}
+
 function userExists(username) {
   const isUsernameInDatabase = users.filter((usr) => usr.username === username);
 
@@ -127,3 +135,4 @@ module.exports.general = public_users;
 module.exports.getBooksWithAxios = getBooksWithAxios;
 module.exports.getBookByISBNWithAxios = getBookByISBNWithAxios;
 module.exports.getBooksByAuthorWithAxios = getBooksByAuthorWithAxios;
+module.exports.getBooksByTitleWithAxios = getBooksByTitleWithAxios;
