@@ -36,7 +36,6 @@ app.use('/customer/auth/*', function auth(req, res, next) {
       return res.status(403).json({ message: 'User is not authenticated.' });
     }
   });
-  //Write the authenication mechanism here
 });
 
 const PORT = 5000;
